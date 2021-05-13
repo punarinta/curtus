@@ -53,4 +53,22 @@ const getCodeUrl = (code) => {
   return row ? row.url : undefined
 }
 
+/**
+ * Save a URL and return its quick code
+ *
+ * @param {string} url
+ * @return {string|boolean}
+ */
+const saveUrl = (url) => {
+  dbObject.prepare('INSERT INTO shorts (url) VALUES (?)').run(url)
+
+  const row = dbObject.prepare('SELECT last_insert_rowid() AS id').get()
+
+  try {
+    return encode(row.id, getConfig().salt)
+  } catch (e) {
+    return false
+  }
+}
+
 module.exports = { dbInit, dbShutdown, getCodeUrl }
