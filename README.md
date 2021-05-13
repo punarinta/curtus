@@ -1,2 +1,2 @@
-# curtus
-An embeddable URL shortener
+# Curtus
+A lightweight URL shortener.

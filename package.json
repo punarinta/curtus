@@ -1,0 +1,27 @@
+{
+  "name": "curtus",
+  "version": "0.1.0",
+  "description": "An embeddable URL shortener",
+  "main": "index.js",
+  "scripts": {
+    "local": "node server.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/punarinta/curtus.git"
+  },
+  "author": "Vladimir Osipov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/punarinta/curtus/issues"
+  },
+  "homepage": "https://github.com/punarinta/curtus#readme",
+  "dependencies": {
+    "better-sqlite3": "^7.3.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^5.4.1",
+    "jest": "^26.6.3"
+  }
+}
