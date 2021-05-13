@@ -40,15 +40,7 @@ const dbShutdown = () => {
  * @return {string|undefined}
  */
 const getCodeUrl = (code) => {
-  let id = 0
-
-  try {
-    id = decode(code, getConfig().salt)
-  } catch (e) {
-    return undefined
-  }
-
-  const row = dbObject.prepare('SELECT url FROM shorts WHERE id = ?').get(id)
+  const row = dbObject.prepare('SELECT url FROM shorts WHERE id = ?').get(decode(code, getConfig().salt))
 
   return row ? row.url : undefined
 }
