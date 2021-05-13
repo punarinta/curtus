@@ -1,0 +1,8 @@
+{
+  "server": {
+    "port": 4000
+  },
+  "salt": 20210513,
+  "inMemory": false,
+  "redirectOnError": "https://github.com/punarinta/curtus"
+}
