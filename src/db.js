@@ -1,7 +1,7 @@
 const fs = require('fs')
 const sqlDb = require('better-sqlite3')
 const { getConfig } = require('./config')
-const { decode } = require('./qc')
+const { encode, decode } = require('./qc')
 
 let dbObject
 
@@ -57,7 +57,7 @@ const saveUrl = (url) => {
   const row = dbObject.prepare('SELECT last_insert_rowid() AS id').get()
 
   try {
-    return encode(row.id, getConfig().salt)
+    return encode(row.id, getConfig().salt).toUpperCase()
   } catch (e) {
     return undefined
   }
