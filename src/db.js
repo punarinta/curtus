@@ -49,7 +49,7 @@ const getCodeUrl = (code) => {
  * Save a URL and return its quick code
  *
  * @param {string} url
- * @return {string|boolean}
+ * @return {string|undefined}
  */
 const saveUrl = (url) => {
   dbObject.prepare('INSERT INTO shorts (url) VALUES (?)').run(url)
@@ -59,7 +59,7 @@ const saveUrl = (url) => {
   try {
     return encode(row.id, getConfig().salt)
   } catch (e) {
-    return false
+    return undefined
   }
 }
 
