@@ -1,6 +1,6 @@
 const http = require('http')
 const { getConfig } = require('./src/config')
-const { dbInit, dbShutdown, getCodeUrl } = require('./src/db')
+const { dbInit, dbShutdown, getCodeUrl, saveUrl } = require('./src/db')
 
 process.on('SIGHUP', () => process.exit(128 + 1))
 process.on('SIGINT', () => process.exit(128 + 2))
@@ -17,7 +17,7 @@ http.createServer(async (req, res) => {
     return
   }
 
-  if (req.url.startsWith('/shorten')) {
+  if (req.url === '/shorten/') {
     let
       code = 200,
       result = {}
@@ -27,9 +27,9 @@ http.createServer(async (req, res) => {
         return respondToOptions(res)
       }
 
-      result = { isError: false, data: '', errMsg: null }
+      result = { isError: false, data: saveUrl(decodeURIComponent(req.url.slice(9))), errMsg: null }
     } catch (err) {
-      code = typeof err.code === 'undefined' ? 500 : err.code
+      code = err.code === undefined ? 500 : err.code
       result = { isError: true, data: null, errMsg: typeof err.message === 'undefined' ? err : err.message }
       console.log(err)
     }
