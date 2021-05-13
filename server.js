@@ -17,7 +17,7 @@ http.createServer(async (req, res) => {
     return
   }
 
-  if (req.url === '/shorten/') {
+  if (req.url.startsWith('/shorten/')) {
     let
       code = 200,
       result = {}

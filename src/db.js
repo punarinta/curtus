@@ -63,4 +63,4 @@ const saveUrl = (url) => {
   }
 }
 
-module.exports = { dbInit, dbShutdown, getCodeUrl }
+module.exports = { dbInit, dbShutdown, getCodeUrl, saveUrl }
