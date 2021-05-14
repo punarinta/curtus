@@ -1,5 +1,6 @@
 const http = require('http')
 const { getConfig } = require('./src/config')
+const { respondToOptions } = require('./src/utils')
 const { dbInit, dbShutdown, getCodeUrl, saveUrl } = require('./src/db')
 
 process.on('SIGHUP', () => process.exit(128 + 1))
@@ -12,7 +13,7 @@ process.on('exit', () => {
 
 dbInit()
 
-http.createServer(async (req, res) => {
+http.createServer((req, res) => {
   if (req.url === undefined) {
     return
   }
