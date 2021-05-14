@@ -1,7 +1,7 @@
 const http = require('http')
 const { getConfig } = require('./src/config')
 const { respondToOptions } = require('./src/utils')
-const { dbInit, dbShutdown, getCodeUrl, saveUrl } = require('./src/db')
+const { dbInit, dbShutdown, getCodeUrl, saveUrl, removeOldUrls } = require('./src/db')
 
 process.on('SIGHUP', () => process.exit(128 + 1))
 process.on('SIGINT', () => process.exit(128 + 2))
@@ -12,6 +12,9 @@ process.on('exit', () => {
 })
 
 dbInit()
+
+let cleanupCounter = 0
+const checkOnEvery = getConfig().cleanup.checkOnEvery
 
 http.createServer((req, res) => {
   if (req.url === undefined) {
@@ -26,6 +29,10 @@ http.createServer((req, res) => {
     try {
       if (req.method.toUpperCase() === 'OPTIONS') {
         return respondToOptions(res)
+      }
+
+      if (checkOnEvery !== -1 && !(cleanupCounter++ % checkOnEvery)) {
+        removeOldUrls()
       }
 
       result = { isError: false, data: saveUrl(decodeURIComponent(req.url.slice(9))), errMsg: null }

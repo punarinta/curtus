@@ -63,4 +63,17 @@ const saveUrl = (url) => {
   }
 }
 
-module.exports = { dbInit, dbShutdown, getCodeUrl, saveUrl }
+/**
+ * Remove old URLs based on the configured lifetime
+ */
+const removeOldUrls = () => {
+  const
+    lifetime = getConfig().cleanup.lifetime,
+    priorTo = Math.round((new Date()).getTime() / 1000) - lifetime
+
+  if (lifetime !== -1) {
+    dbObject.prepare("DELETE FROM shorts WHERE DATETIME(ts) < DATETIME(?, 'unixepoch')").run(priorTo)
+  }
+}
+
+module.exports = { dbInit, dbShutdown, getCodeUrl, saveUrl, removeOldUrls }

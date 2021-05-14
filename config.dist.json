@@ -4,5 +4,9 @@
   },
   "salt": 20210513,
   "inMemory": false,
-  "redirectOnError": "https://github.com/punarinta/curtus"
+  "redirectOnError": "https://github.com/punarinta/curtus",
+  "cleanup": {
+    "checkOnEvery": 1000,
+    "lifetime": 259200
+  }
 }
