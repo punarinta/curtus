@@ -10,7 +10,7 @@ let dbObject
  */
 const dbInit = () => {
   try {
-    dbObject = new sqlDb('./data/curtus.sqlite', { /* verbose: console.log */ })
+    dbObject = new sqlDb(getConfig().inMemory ? ':memory:' : './data/curtus.sqlite', { /* verbose: console.log */ })
   } catch (e) {
     console.log('Cannot establish DB connection')
     process.exit(0)
