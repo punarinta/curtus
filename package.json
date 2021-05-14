@@ -4,7 +4,7 @@
   "description": "An embeddable URL shortener",
   "main": "index.js",
   "scripts": {
-    "local": "node server.js",
+    "server": "node server.js",
     "test": "jest"
   },
   "repository": {
