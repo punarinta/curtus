@@ -11,6 +11,13 @@
     "type": "git",
     "url": "git+https://github.com/punarinta/curtus.git"
   },
+  "keywords": [
+    "short",
+    "shorten",
+    "url",
+    "shortener",
+    "url shortener"
+  ],
   "author": "Vladimir Osipov",
   "license": "ISC",
   "bugs": {
