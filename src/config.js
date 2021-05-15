@@ -1,7 +1,7 @@
 const { deepMerge } = require('./utils')
 const distConfig = require('../config.dist.json')
 
-let config = require('../config.json')
+let config = {}
 
 /** @typedef ({
  *  server: {

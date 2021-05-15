@@ -1,5 +1,6 @@
+const fs = require('fs')
 const http = require('http')
-const { getConfig } = require('./src/config')
+const { getConfig, setConfig } = require('./src/config')
 const { authorize } = require('./src/auth')
 const { respondToOptions } = require('./src/utils')
 const { dbInit, dbShutdown, getCodeUrl, saveUrl, removeOldUrls } = require('./src/db')
@@ -13,6 +14,14 @@ process.on('exit', () => {
 })
 
 dbInit()
+
+if (fs.existsSync('./config.json')) {
+  try {
+    setConfig(JSON.parse(fs.readFileSync('./config.json', 'utf8')))
+  } catch (_) {
+    console.log('Cannot load config file')
+  }
+}
 
 let cleanupCounter = 0
 const checkOnEvery = getConfig().cleanup.checkOnEvery
