@@ -6,6 +6,7 @@ const distConfig = require('../config.dist.json')
  * @return {{
  *  server: {
  *    port: number,
+ *    token: string | null,
  *  },
  *  inMemory: boolean,
  *  redirectOnError: string,

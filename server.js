@@ -1,5 +1,6 @@
 const http = require('http')
 const { getConfig } = require('./src/config')
+const { authorize } = require('./src/auth')
 const { respondToOptions } = require('./src/utils')
 const { dbInit, dbShutdown, getCodeUrl, saveUrl, removeOldUrls } = require('./src/db')
 
@@ -30,6 +31,8 @@ http.createServer((req, res) => {
       if (req.method.toUpperCase() === 'OPTIONS') {
         return respondToOptions(res)
       }
+
+      authorize(req)
 
       if (checkOnEvery !== -1 && !(cleanupCounter++ % checkOnEvery)) {
         removeOldUrls()

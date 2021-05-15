@@ -9,14 +9,18 @@ configuration. At least we recommend changing the salt.
 
 ## Configuration options
 - `server.port` — a port to listen to for HTTP requests
+- `server.token` — authorization token string, set to `null` if not used
 - `salt` — a random number from 0 to 10^9, must be constant for a given database
 - `inMemory` — allows to run with no file-based DB at all
 - `redirectOnError` — a URL to redirect to when unpacking fails
 - `cleanup.checkOnEvery` — a number of HTTP requests after which to check for outdated URLs
 - `cleanup.lifetime` — a number in seconds for a **minimal** URL lifetime
 
+## Authorization
+If necessary shortening can be protected. Configure `server.token` value (see above) and pass the token in a HTTP
+request header: `Authorization: Bearer YOUR_TOKEN_HERE`.
+
 ## To do
-* authentication
 * automatic setup script for nginx environments
 * NPM package to allow using this without a server
 * type annotations and clean code style

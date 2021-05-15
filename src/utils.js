@@ -1,4 +1,16 @@
 /**
+ * Exception sugar
+ *
+ * @param {string} message
+ * @param {number} code
+ *
+ * @returns {{code: number, message: *}}
+ */
+const Exception = (message, code = 500) => {
+  return { message, code }
+}
+
+/**
  * @param {import('http').ServerResponse} res
  */
 const respondToOptions = (res) => {
@@ -55,4 +67,4 @@ const deepMerge = (...objects) => {
   return newObj
 }
 
-module.exports = { respondToOptions, deepMerge }
+module.exports = { Exception, respondToOptions, deepMerge }
