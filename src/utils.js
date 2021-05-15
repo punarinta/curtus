@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 /**
  * Exception sugar
  *
@@ -67,4 +69,20 @@ const deepMerge = (...objects) => {
   return newObj
 }
 
-module.exports = { Exception, respondToOptions, deepMerge }
+/**
+ * Checks if a fs entity is a directory
+ *
+ * @param path
+ * @return {boolean}
+ */
+const isDir = (path) => {
+  try {
+    const stat = fs.lstatSync(path)
+
+    return stat.isDirectory()
+  } catch (e) {
+    return false
+  }
+}
+
+module.exports = { Exception, respondToOptions, deepMerge, isDir }

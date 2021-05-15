@@ -1,6 +1,7 @@
 const fs = require('fs')
 const sqlDb = require('better-sqlite3')
 const { getConfig } = require('./config')
+const { isDir } = require('./utils')
 const { encode, decode } = require('./qc')
 
 let dbObject
@@ -9,6 +10,16 @@ let dbObject
  * Connect to the database and assure the main table exists
  */
 const dbInit = () => {
+  if (fs.existsSync('./data')) {
+    if (!isDir('./data')) {
+      console.log('"data" is not a directory')
+      process.exit(0)
+    }
+  } else {
+    // simply create a directory
+    fs.mkdirSync('./data')
+  }
+
   try {
     dbObject = new sqlDb(getConfig().inMemory ? ':memory:' : './data/curtus.sqlite', { /* verbose: console.log */ })
   } catch (e) {
@@ -20,7 +31,7 @@ const dbInit = () => {
 
   if (row.count === 0) {
     console.log('Table does not exist. Creating a new one...')
-    dbObject.exec(fs.readFileSync('./docs/db-scheme.sql', 'utf8'))
+    dbObject.exec(fs.readFileSync(__dirname + '/../docs/db-scheme.sql', 'utf8'))
   }
 }
 
