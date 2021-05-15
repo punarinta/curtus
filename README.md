@@ -14,13 +14,13 @@ A lightweight URL shortener. You can either deploy it as a standalone service or
 1. `npm i curtus --save`
 2. Test code 
 ```js
-import { init, db } from 'curtus'
+const curtus = require('curtus')
 
-init()
+curtus.init()
 
-const 
-  quickCode = db.saveUrl('https://someurl.com/trololo'),
-  restoredUrl = db.getCodeUrl(quickCode)
+const
+  quickCode = curtus.db.saveUrl('https://someurl.com/trololo'),
+  restoredUrl = curtus.db.getCodeUrl(quickCode)
 
 console.log('Code is', quickCode)
 console.log('Restored URL is', restoredUrl)
