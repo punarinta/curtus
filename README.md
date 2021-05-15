@@ -16,7 +16,7 @@ A lightweight URL shortener. You can either deploy it as a standalone service or
 ```js
 const curtus = require('curtus')
 
-curtus.init()
+curtus.init({/* config object */})
 
 const
   quickCode = curtus.db.saveUrl('https://someurl.com/trololo'),
