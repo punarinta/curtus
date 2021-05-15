@@ -6,7 +6,7 @@ const config = require('./src/config.js')
 module.exports.db = db
 module.exports.config = config
 
-module.exports.init = (config) => {
-  config.setConfig(config)
+module.exports.init = (localConfig) => {
+  config.setConfig(localConfig)
   db.dbInit()
 }
