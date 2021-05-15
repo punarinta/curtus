@@ -1,9 +1,9 @@
 const { deepMerge } = require('./utils')
-const config = require('../config.json')
 const distConfig = require('../config.dist.json')
 
-/**
- * @return {{
+let config = require('../config.json')
+
+/** @typedef ({
  *  server: {
  *    port: number,
  *    token: string | null,
@@ -15,10 +15,23 @@ const distConfig = require('../config.dist.json')
  *    checkOnEvery: number,
  *    lifetime: number
  *  }
- * }}
+ * }) Config
+ */
+
+/**
+ * @return {Config}
  */
 const getConfig = () => {
   return deepMerge(distConfig, config)
 }
 
-module.exports = { getConfig }
+/**
+ * Set a new config. Useful for serverless mode.
+ *
+ * @param {Config} newConfig
+ */
+const setConfig = (newConfig) => {
+  config = deepMerge({}, newConfig)
+}
+
+module.exports = { getConfig, setConfig }
