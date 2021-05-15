@@ -24,6 +24,12 @@ const
 
 console.log('Code is', quickCode)
 console.log('Restored URL is', restoredUrl)
+
+// run this when you need to wipe out old records
+curtus.db.removeOldUrls()
+
+// you may run this on your app shutdown to keep things clean
+curtus.db.dbShutdown()
 ```
 
 ## Setup (server only)
