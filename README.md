@@ -1,5 +1,6 @@
 ## Curtus
-A lightweight URL shortener. You can either deploy it as a standalone service or use as a library.
+A fast and lightweight URL shortener. You can either deploy it as a standalone service or use as a library.
+Two ways to store data: either using a built-in synchronous SQLite3 (a good compromise) or an in-memory database (very fast but data is lost in case of restart).
 
 ## Configuration options
 - `server.port` — a port to listen to for HTTP requests
@@ -45,4 +46,5 @@ pass the token in a HTTP request header: `Authorization: Bearer YOUR_TOKEN_HERE`
 ## To do
 * automatic setup script for nginx environments
 * cover with tests
+* add performance tests
 * type annotations and perfect code

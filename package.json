@@ -1,7 +1,7 @@
 {
   "name": "curtus",
   "version": "1.0.2",
-  "description": "An embeddable URL shortener with a standalone mode support",
+  "description": "A lightweight embeddable URL shortener with a standalone server mode support",
   "main": "module.js",
   "scripts": {
     "server": "node server.js",
