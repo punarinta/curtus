@@ -43,8 +43,15 @@ configuration. At least we recommend changing the salt.
 If necessary shortening can be protected when used via a built-in server. Configure `server.token` value (see above) and 
 pass the token in a HTTP request header: `Authorization: Bearer YOUR_TOKEN_HERE`.
 
+## Clean server install
+
+If you want to install Curtus to a completely new server feel free to use the installation script provided. Simply run:
+```bash
+docs/linux-install.sh
+```
+
 ## To do
-* automatic setup script for nginx environments
 * cover with tests
 * add performance tests
 * type annotations and perfect code
+* extend with optional statistics collection
